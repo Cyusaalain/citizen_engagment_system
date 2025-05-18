@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Track from './pages/Track';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import { Navigate } from "react-router-dom";
 
 
 export default function App() {
@@ -17,7 +18,13 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/track" element={<Track />} />
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard"
+                    element={
+                        localStorage.getItem("admin")
+                        ? <AdminDashboard />
+                        : <Navigate to="/admin" replace />
+                            }
+          />
         </Routes>
       </div>
     </Router>
