@@ -9,5 +9,7 @@ export const trackComplaint = (id) => API.get(`/citizen/track/${id}`);
 
 // admin endpoints
 export const loginAdmin = (data) => API.post('/admin/login' , data); //stubbed
-export const fetchComplaints = (username) => API.get('/admin/complaints?username=${username}');
-export const respondToComplaint = (id, data) => API.put('/admin/respond/${id}', data);
+export const respondToComplaint = (id, data) =>
+  API.put(`/admin/respond/${id}`, data);
+export const fetchComplaints = (username) =>
+  API.get(`/admin/complaints?username=${username}`);
