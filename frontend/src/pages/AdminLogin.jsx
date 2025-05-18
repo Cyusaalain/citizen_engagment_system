@@ -16,8 +16,9 @@ export default function AdminLogin() {
 
     try {
       const res = await loginAdmin(form);
-      onsole.log('Login API response:', res);
+      console.log('Login API response:', res);
       if (res.status === 200) {
+        localStorage.setItem("admin", form.username);
         navigate('/admin/dashboard');
       }
     } catch (err) {

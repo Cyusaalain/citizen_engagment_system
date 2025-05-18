@@ -7,7 +7,8 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetchComplaints();
+      const username = localStorage.getItem("admin");
+      const res = await fetchComplaints(username);
       setTickets(res.data);
     };
     load();

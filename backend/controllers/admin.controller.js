@@ -30,11 +30,18 @@ export const respondToComplaint = async (req, res) => {
 };
 
 export const getAssignedComplaints = async (req, res) => {
+  const { username } = req.query;
+
   try {
+    const admin = await db.Admin.findOne({ where: { username } });
+    if (!admin) return res.status(404).json({ error: "Admin not found" });
+
     const complaints = await db.Complaint.findAll({
+      where: { AgencyId: admin.AgencyId },
       include: [db.User, db.Agency],
       order: [['createdAt', 'DESC']],
     });
+
     res.json(complaints);
   } catch (err) {
     res.status(500).json({ error: err.message });
