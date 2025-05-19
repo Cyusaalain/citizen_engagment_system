@@ -4,6 +4,10 @@ import { routeComplaint } from '../services/router.service.js';
 export const submitComplaint = async (req, res) => {
   const { name, email, category, description } = req.body;
 
+  if (!name?.trim() || !email?.trim()) {
+    return res.status(400).json({ error: 'Name and email are required' });
+  }
+
   try {
     const [user] = await db.User.findOrCreate({ where: { email }, defaults: { name } });
 
