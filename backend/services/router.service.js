@@ -23,7 +23,6 @@ function inferCategoryFromText(text) {
 export const routeComplaint = async (category, description = '') => {
   const agencies = await db.Agency.findAll();
 
-  // 1. Try user-selected category (if provided)
   if (category) {
     for (const agency of agencies) {
       const normalized = agency.categories.map(c => c.toLowerCase().trim());
@@ -33,7 +32,6 @@ export const routeComplaint = async (category, description = '') => {
     }
   }
 
-  // 2. Fallback: auto-infer from text
   const inferredCategory = inferCategoryFromText(description);
   if (!inferredCategory) throw new Error('No category or keywords matched');
 

@@ -12,7 +12,7 @@ app.use('/api/citizen', citizenRoutes);
 app.use('/api/admin', adminRoutes);
 
 db.sequelize.sync().then(() => {
-  console.log("✅ DB Synced");
+  console.log("DB Synced");
 });
 
 app.listen(3000, () => console.log("🚀 Server running at http://localhost:3000"));
