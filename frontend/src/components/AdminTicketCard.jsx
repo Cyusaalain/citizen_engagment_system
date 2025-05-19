@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { respondToComplaint } from '../services/api';
+import toast from 'react-hot-toast';
 
 export default function AdminTicketCard({ ticket }) {
   const [status, setStatus] = useState(ticket.status);
@@ -7,7 +8,7 @@ export default function AdminTicketCard({ ticket }) {
 
   const handleUpdate = async () => {
     await respondToComplaint(ticket.id, { status, response });
-    alert('Updated');
+    toast.success("updated");
   };
 
   return (
@@ -15,6 +16,7 @@ export default function AdminTicketCard({ ticket }) {
       <p><strong>Ticket ID:</strong> {ticket.id}</p>
       <p><strong>Category:</strong> {ticket.category}</p>
       <p><strong>Citizen Email:</strong> {ticket.User?.email}</p>
+      <p><strong>Description:</strong> {ticket.description}</p>
       <select value={status} onChange={(e) => setStatus(e.target.value)} className="border p-2 w-full mt-2">
         <option value="open">Open</option>
         <option value="in-progress">In Progress</option>

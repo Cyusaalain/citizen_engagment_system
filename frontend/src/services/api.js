@@ -13,3 +13,5 @@ export const respondToComplaint = (id, data) =>
   API.put(`/admin/respond/${id}`, data);
 export const fetchComplaints = (username) =>
   API.get(`/admin/complaints?username=${username}`);
+export const fetchComplaintStats = (username) =>
+  API.get(`/admin/stats?username=${username}`);

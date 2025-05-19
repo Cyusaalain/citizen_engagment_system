@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { submitComplaint } from '../services/api';
+import toast from 'react-hot-toast';
 
 const ComplaintForm = () => {
   const [form, setForm] = useState({ name: '', email: '', category: '', description: '' });
@@ -13,6 +14,7 @@ const ComplaintForm = () => {
     e.preventDefault();
     const res = await submitComplaint(form);
     setTicketId(res.data.ticketId);
+    toast.success("Complaint submitted successfully!");
   };
 
   return (

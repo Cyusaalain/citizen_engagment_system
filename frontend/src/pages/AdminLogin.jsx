@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginAdmin } from '../services/api';
+import toast from 'react-hot-toast';
 
 export default function AdminLogin() {
   const [form, setForm] = useState({ username: '', password: '' });
@@ -12,10 +13,10 @@ export default function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    console.log('Trying login with:', form);
 
     try {
       const res = await loginAdmin(form);
+      toast.success("Login successful!");
       console.log('Login API response:', res);
       if (res.status === 200) {
         localStorage.setItem("admin", form.username);
@@ -23,7 +24,7 @@ export default function AdminLogin() {
       }
     } catch (err) {
       console.error('Login error:', err);
-      setError('Login failed. Please check your credentials.');
+      toast.success("Login failed");
     }
   };
 

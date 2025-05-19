@@ -2,10 +2,10 @@
 
 import bcrypt from 'bcrypt';
 
-const raw = '12345'; // replace with your real admin password
+const  regis = '12345';
 
 const hashPassword = async () => {
-  const hash = await bcrypt.hash(raw, 10);
+  const hash = await bcrypt.hash('regis', 10);
   console.log('✅ Bcrypt hash:\n\n', hash, '\n');
 };
 
